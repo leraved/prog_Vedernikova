@@ -1,6 +1,5 @@
 import graphics as gr
-import time
-from collections import namedtuple
+
 
 window = gr.GraphWin("project", 500, 500)
 
@@ -168,3 +167,7 @@ def draw_picture():
 
 
 draw_picture()
+
+
+window.getMouse()
+window.close()
