@@ -8,6 +8,7 @@ canvas.pack(fill=BOTH, expand=1)
 
 
 balls = []
+r = [1, 2]
 global R
 R = 40
 
@@ -35,15 +36,13 @@ def tick_handler():
             dy = -dy
             y = 300-2*R
 
-        r1 = (balls[0][0]-balls[1][0])*(balls[0][0]-balls[1][0])
-        r2 = (balls[0][1]-balls[1][1])*(balls[0][1]-balls[1][1])
-        
-        if (r1 + r2 < R*R):
-             balls[0][2] = - balls[0][2]
-             balls[0][3] = - balls[0][3]
-
-             balls[1][2] = - balls[1][2]
-             balls[1][3] = - balls[1][3]
+        for l in range (2):
+            r[l] = (balls[0][l]-balls[1][l])*(balls[0][l]-balls[1][l])
+            
+        if (r[0] + r[1] < R*R):
+             for i in range(2):
+                balls[0][i + 2] = - balls[0][i + 2]
+                balls[1][i + 2] = - balls[1][i + 2]
              
         x = x + dx; y = y + dy
         
