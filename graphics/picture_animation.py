@@ -1,8 +1,12 @@
 import graphics as gr
+import random
 import time
-from collections import namedtuple
 
 window = gr.GraphWin("project", 500, 500)
+
+distancex = [7, 9, 10, -9, -10, -5, -7, 12, -12]
+distancey = [7, 9, 10, -9, -10, -5, -7, 12, -12]
+radius = [15, 16, 17, 18, 19, 20]
 
 
 def draw_sky():
@@ -26,46 +30,18 @@ def draw_sun():
         sun.draw(window)
 
 
-def draw_cloud(x:int, y:int):
-        global cloud1
-        global cloud2
-        global cloud3
-        global cloud4
-        global cloud5
-        global cloud6
-        
-        cloud1 = gr.Circle(gr.Point(x, y), 20)
-        cloud1.setOutline('white')
-        cloud1.setFill('white')
-        cloud1.draw(window)
-
-        cloud2 = gr.Circle(gr.Point(x+20, y-5), 30)
-        cloud2.setOutline('white')
-        cloud2.setFill('white')
-        cloud2.draw(window)
-
-        cloud3 = gr.Circle(gr.Point(x+50, y), 20)
-        cloud3.setOutline('white')
-        cloud3.setFill('white')
-        cloud3.draw(window)
-
-        cloud4 = gr.Circle(gr.Point(x+10, y+15), 20)
-        cloud4.setOutline('white')
-        cloud4.setFill('white')
-        cloud4.draw(window)
-
-        cloud5 = gr.Circle(gr.Point(x+40, y+20), 20)
-        cloud5.setOutline('white')
-        cloud5.setFill('white')
-        cloud5.draw(window)
-
-        cloud6 = gr.Circle(gr.Point(x+50, y+10), 15)
-        cloud6.setOutline('white')
-        cloud6.setFill('white')
-        cloud6.draw(window)
+def draw_cloud(x, y):
+        for _ in range(5):
+                r = random.choice(radius)
+                dsx = random.choice(distancex)
+                dsy = random.choice(distancey)
+                cloud = gr.Circle(gr.Point(x + dsx, y + dsy), r)
+                cloud.setOutline('white')
+                cloud.setFill('white')
+                cloud.draw(window)
 
 
-def draw_birds(x:int, y:int):
+def draw_birds(x, y):
         global bird1_1
         global bird1_2
         global bird2_1
@@ -140,8 +116,8 @@ def draw_ship():
         draw_ship_flag()
 
 
-def draw_palm_trunk(y1:int, y2:int, y3:int):
-        for x in range (7):
+def draw_palm_trunk(y1, y2, y3):
+        for _ in range (7):
                 palm1 = gr.Polygon(gr.Point(360, y1), gr.Point(345, y2), gr.Point(375, y3))
                 palm1.setFill('brown')
                 palm1.setOutline('brown')
@@ -158,7 +134,7 @@ def draw_palm_ground():
         palm_ground.draw(window)
 
 
-def draw_palm_list(x1:int, y1:int, x2:int,y2:int):
+def draw_palm_list(x1, y1, x2, y2):
         palm_list = gr.Polygon(gr.Point(360, 245), gr.Point(x1, y1), gr.Point(x2, y2))
         palm_list.setFill('green')
         palm_list.setOutline('green')
@@ -191,7 +167,7 @@ def draw_picture():
         draw_birds(250, 50)
         draw_palm()
         
-        for i in range(20):
+        for _ in range(20):
                 sun.move(-1, 0)
                 
                 bird1_1.move(1, -1)
@@ -201,13 +177,6 @@ def draw_picture():
                 bird3_1.move(1, -1)
                 bird3_2.move(1, -1)
                 
-                cloud1.move(1, 0)
-                cloud2.move(1, 0)
-                cloud3.move(1, 0)
-                cloud4.move(1, 0)
-                cloud5.move(1, 0)
-                cloud6.move(1, 0)
-
                 ship_deck1.move(1, 0)
                 ship_side1.move(1, 0)
                 ship_flag_line.move(1, 0)
