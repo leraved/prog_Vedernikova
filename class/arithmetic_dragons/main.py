@@ -1,4 +1,4 @@
-from tournament import *
+from tournamet import *
 
 print(__name__)
 
